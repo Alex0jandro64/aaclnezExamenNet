@@ -6,6 +6,9 @@ using System.Diagnostics;
 
 namespace aaclnezExamenNet.Controllers
 {
+    /// <summary>
+    /// Clase Controladora Principal
+    /// </summary>
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -23,12 +26,13 @@ namespace aaclnezExamenNet.Controllers
 
         public IActionResult Index()
         {
+            //Declaraciones
             List<Vajilla>listaVajillasInsertadas = new List<Vajilla>();
             List<Vajilla>listaVajillasObtenidas = new List<Vajilla>();
             List<Reserva>listaReservasInsertadas = new List<Reserva>();
             Vajilla v1 = new Vajilla();
             bool cerrar = false;
-
+            //Programa, no se cierra pero solo habria que poner un case 4 que cambien cerrar a true
             do
             {
                 Utilidades.menuPrincipal();
@@ -43,6 +47,7 @@ namespace aaclnezExamenNet.Controllers
                 
                 switch (opcion)
                 {
+                    //En caso 1 Pido e Inserto el objeto en la base de datos
                     case 1:
                         try
                         {
@@ -54,6 +59,7 @@ namespace aaclnezExamenNet.Controllers
                         }
                         break;
 
+                        //En caso 2 get de todos los objetos, se pasan a lista dto y se imprime por pantalla
                     case 2:
                         try
                         {
@@ -66,6 +72,9 @@ namespace aaclnezExamenNet.Controllers
                         }
                         break;
 
+                        //En caso 3 Pido la fecha de la reserva que yo uso String, y lo inserto en la base de datos
+                        //Pido el codigo de elemento y lo busco en la lista de objetos que me guardo al hacer el get
+                        //Pido la cantidad que va a reservar y lo añado todo al objerto RelVajillaReserva y lo inserto en la base de datos
                     case 3:
                         try
                         {
@@ -100,6 +109,7 @@ namespace aaclnezExamenNet.Controllers
                             Console.WriteLine("Error al Crear la Reserva");
                         }
                         break;
+
                 }
 
             } while (!cerrar);
